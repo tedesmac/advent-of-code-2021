@@ -182,13 +182,3 @@ func MarkCheck(b *[][]Cell, n int) {
 		}
 	}
 }
-
-func PrintBoard(board [][]Cell) {
-	for _, row := range board {
-		for _, cell := range row {
-			fmt.Printf("%v ", cell)
-		}
-		fmt.Println("\n")
-	}
-	fmt.Println("\n")
-}
