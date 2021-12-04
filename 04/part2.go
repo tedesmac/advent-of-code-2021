@@ -93,9 +93,7 @@ type Cell struct {
 }
 
 func main() {
-	I := 0
-	N := 0
-	wins := []int{}
+	I, N, wins := 0, 0, []int{}
 	var numbers []int
 	var boards [][][]Cell
 
@@ -109,9 +107,7 @@ func main() {
 				wins = append(wins, i)
 
 				if len(wins) == len(boards) {
-					I = i
-					N = n
-					finish = true
+					I, N, finish = i, n, true
 					break
 				}
 			}
@@ -145,15 +141,11 @@ func CheckWin(b [][]Cell) bool {
 			row = row && b[i][j].Check
 		}
 
-		if column {
-			return true
-		}
-		if row {
+		if column || row {
 			return true
 		}
 
-		column = true
-		row = true
+		column, row = true, true
 	}
 
 	return false

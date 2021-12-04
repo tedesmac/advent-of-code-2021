@@ -93,8 +93,7 @@ type Cell struct {
 }
 
 func main() {
-	I := 0
-	N := 0
+	I, N := 0, 0
 	var numbers []int
 	var boards [][][]Cell
 
@@ -105,9 +104,7 @@ func main() {
 		for i, board := range boards {
 			MarkCheck(&board, n)
 			if CheckWin(board) {
-				I = i
-				N = n
-				isWin = true
+				I, N, isWin = i, n, true
 				break
 			}
 		}
@@ -122,8 +119,7 @@ func main() {
 }
 
 func CheckWin(b [][]Cell) bool {
-	column := true
-	row := true
+	column, row := true, true
 
 	for i, r := range b {
 		for j, _ := range r {
@@ -131,15 +127,11 @@ func CheckWin(b [][]Cell) bool {
 			row = row && b[i][j].Check
 		}
 
-		if column {
-			return true
-		}
-		if row {
+		if column || row {
 			return true
 		}
 
-		column = true
-		row = true
+		column, row = true, true
 	}
 
 	return false
